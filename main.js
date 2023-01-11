@@ -2,17 +2,21 @@ console.log("Script attached");
 /*----------- Exercise #1: SELECTING/MANIPULATING ELEMENTS -----------*/
 
 // Select Node #1 and change the text to: "I used the getElementById("node1") method to access this"
+
+//Create variables often to link to areas in the HTML.
 let node1 = document.getElementById("node1");
 node1.textContent = "I used the getElementById(\"node1\") method to access this.";
 
 
 // Select Node #2 and change the text to: "I used the getElementByClassName("node2") method to access this" */
+//This property returns a list, so we selected the 0 index.
 let node2 = document.getElementsByClassName("node2")[0];
 node2.textContent = "I used the getElementByClassName(\"node2\") method to access this."
 
 
 
 // Select ALL the h3 tags and change the text to: "I used the getElementByTagName("h3") method to access all of these" */
+//This also returned a list, allowing us to make a for loop.
 let h3s = document.getElementsByTagName("h3");
 
 for(let h3 of h3s) {
@@ -46,6 +50,7 @@ parent2.appendChild(para);
 let anc = document.createElement("a");
 anc.textContent = "I am an <a> tag."
 
+//Opens new tab.
 anc.target = '_blank';
 anc.href = "https://personacentral.com"
 
@@ -64,6 +69,8 @@ let replaceChild = document.querySelector("#N1");
 parent3.replaceChild(child3, replaceChild);
 
 // TODO: Remove the "New Child Node"
+
+//Could also be written by setting the function to a variable.
 setTimeout(() => {
    parent3.removeChild(child3);}, 
    3000);
@@ -89,7 +96,6 @@ let list = [ "apples",
 
 // TODO: Create an unordered list element
 let ul = document.createElement("ul");
-
 
 
 // TODO: Iterate over the array values, and create a list item element for each
@@ -122,6 +128,7 @@ function show() {
     let content = document.createElement("p");
     let closeButton = document.createElement("button");
     
+    //Modal appearance was set in the CSS file.
     title.textContent = "Action Required";
     content.textContent = "You need to ...";
     closeButton.textContent = "Close";

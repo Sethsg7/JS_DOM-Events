@@ -5,57 +5,47 @@ console.log("Script attached");
 
 //Create variables often to link to areas in the HTML.
 let node1 = document.getElementById("node1");
-node1.textContent = "I used the getElementById(\"node1\") method to access this.";
-
+node1.textContent = 'I used the getElementById("node1") method to access this.';
 
 // Select Node #2 and change the text to: "I used the getElementByClassName("node2") method to access this" */
 //This property returns a list, so we selected the 0 index.
 let node2 = document.getElementsByClassName("node2")[0];
-node2.textContent = "I used the getElementByClassName(\"node2\") method to access this."
-
-
+node2.textContent =
+  'I used the getElementByClassName("node2") method to access this.';
 
 // Select ALL the h3 tags and change the text to: "I used the getElementByTagName("h3") method to access all of these" */
 //This also returned a list, allowing us to make a for loop.
 let h3s = document.getElementsByTagName("h3");
 
-for(let h3 of h3s) {
-    h3.textContent = "I used the getElementByTagName(\"h3\") method to access all of these."
+for (let h3 of h3s) {
+  h3.textContent =
+    'I used the getElementByTagName("h3") method to access all of these.';
 }
 
-
-
-
-
 /*----------- Exercise #2: CREATING/APPENDING/INSERTING ELEMENTS/OBJECTS -----------*/
-
 
 // TODO: Create a paragraph element using this document.createElement() and put this text inside "This node was created using the createElement() method"
 
 let para = document.createElement("p");
-para.textContent = "I am a <p> tag. This node was created using the createElement() method.";
-
-
+para.textContent =
+  "I am a <p> tag. This node was created using the createElement() method.";
 
 // TODO: Append the created node to the parent node using the element.appendChild() method
 
 let parent2 = document.querySelector("#parent");
 parent2.appendChild(para);
 
-
-
 // TODO: Create a <a> element using this document.createElement() and put this text inside "I am a <a> tag"
 // BONUS: Add a link href to the <a>
 // TODO: Insert the created <a> in the parent but before the <p> you just created using the element.insertBefore() method
 let anc = document.createElement("a");
-anc.textContent = "I am an <a> tag."
+anc.textContent = "I am an <a> tag.";
 
 //Opens new tab.
-anc.target = '_blank';
-anc.href = "https://personacentral.com"
+anc.target = "_blank";
+anc.href = "https://personacentral.com";
 
 parent2.insertBefore(anc, para);
-
 
 /*----------- Exercise #3: REMOVING/REPLACING ELEMENTS/OBJECTS -----------*/
 
@@ -72,47 +62,41 @@ parent3.replaceChild(child3, replaceChild);
 
 //Could also be written by setting the function to a variable.
 setTimeout(() => {
-   parent3.removeChild(child3);}, 
-   3000);
-
-
+  parent3.removeChild(child3);
+}, 3000);
 
 /*----------- Exercise #4: LIST ITEMS ----------- */
 
-
 // Use the following array of values to generate a list on the DOM
 
-let list = [ "apples", 
-"bananas", 
-"carrots", 
-"dragon fruit", 
-"eggplant", 
-"fish", 
-"grapes", 
-"honey", 
-"ice bag", 
-"juice (any kind)" ];
-
+let list = [
+  "apples",
+  "bananas",
+  "carrots",
+  "dragon fruit",
+  "eggplant",
+  "fish",
+  "grapes",
+  "honey",
+  "ice bag",
+  "juice (any kind)",
+];
 
 // TODO: Create an unordered list element
 let ul = document.createElement("ul");
 
-
 // TODO: Iterate over the array values, and create a list item element for each
-for(let item of list) {
+for (let item of list) {
+  // TODO: Append the new list items to the unordered list element
 
-// TODO: Append the new list items to the unordered list element
-
-    let li = document.createElement("li");
-    li.textContent = item;
-    ul.appendChild(li);
+  let li = document.createElement("li");
+  li.textContent = item;
+  ul.appendChild(li);
 }
 
-// TODO: Append the unordered list to the `div#container` under exercise 4 
+// TODO: Append the unordered list to the `div#container` under exercise 4
 let container4 = document.querySelector("#container");
 container4.appendChild(ul);
-
-
 
 /*----------- Exercise #5: DOM EVENTS --------------*/
 
@@ -120,39 +104,39 @@ container4.appendChild(ul);
 // -> "Clicking the button triggers the onclick event, which calls the JS function show()... which alerts the user"
 // This div should be a 'modal' that covers the main content on the screen
 
-
 function show() {
-    let modalContainer = document.createElement("div");
-    let modalBody = document.createElement("div");
-    let title = document.createElement("h2");
-    let content = document.createElement("p");
-    let closeButton = document.createElement("button");
-    
-    //Modal appearance was set in the CSS file.
-    title.textContent = "Action Required";
-    content.textContent = "You need to ...";
-    closeButton.textContent = "Close";
+  let modalContainer = document.createElement("div");
+  let modalBody = document.createElement("div");
+  let title = document.createElement("h2");
+  let content = document.createElement("p");
+  let closeButton = document.createElement("button");
 
-    modalContainer.id = "modal";
-    modalBody.classList.add("modal-card");
+  //Modal appearance was set in the CSS file.
+  title.textContent = "Action Required";
+  content.textContent = "You need to ...";
+  closeButton.textContent = "Close";
 
-    // div.classList.add("modal");
-    // div.textContent = "Clicking the button triggers the onclick event, which calls the JS function show()... which alerts the user";
+  modalContainer.id = "modal";
+  modalBody.classList.add("modal-card");
 
-    modalBody.append(title, content, closeButton);
-    modalContainer.appendChild(modalBody);
-    document.body.appendChild(modalContainer);
+  // div.classList.add("modal");
+  // div.textContent = "Clicking the button triggers the onclick event, which calls the JS function show()... which alerts the user";
 
+  modalBody.append(title, content, closeButton);
+  modalContainer.appendChild(modalBody);
+  document.body.appendChild(modalContainer);
+
+  closeButton.addEventListener("click", closeModal);
+}
+
+function closeModal() {
+  //document.querySelector("#modal").remove();
+  //Alternate method.
+
+  document.getElementById("modal").style.display = "none";
 }
 
 let btn = document.querySelector("#btn");
-
 btn.addEventListener("click", show);
 
-
-
-
 // BONUS: The modal popup should be able to be closed. Refactor for this functionality
-    
-
-
